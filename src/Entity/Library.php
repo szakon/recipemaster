@@ -15,7 +15,11 @@ class Library
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'library', targetEntity: Bookshelf::class, orphanRemoval: true)]
+
+    //#[ORM\OneToMany(mappedBy: 'library', targetEntity: Bookshelf::class, orphanRemoval: true)]
+    //private Collection $bookshelf;
+
+    #[ORM\OneToMany(mappedBy: 'library', targetEntity: Bookshelf::class, orphanRemoval: true, cascade: ["persist"])]
     private Collection $bookshelf;
 
     #[ORM\Column(length: 255)]
@@ -72,4 +76,9 @@ class Library
 
         return $this;
     }
+
+    public function __toString() {
+        return $this->owner . " ";
+    }
+
 }

@@ -15,10 +15,11 @@ class Bookshelf
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $RecipeBook = null;
 
-    #[ORM\OneToMany(mappedBy: 'bookshelf', targetEntity: RecipeBook::class, orphanRemoval: true)]
+    #[ORM\Column(nullable: false)]
+    private ?string $Shelf = null;
+
+    #[ORM\OneToMany(mappedBy: 'bookshelf', targetEntity: RecipeBook::class, orphanRemoval: true, cascade: ["persist"])]
     private Collection $recipeBooks;
 
     #[ORM\ManyToOne(inversedBy: 'bookshelf')]
@@ -35,14 +36,14 @@ class Bookshelf
         return $this->id;
     }
 
-    public function getRecipeBook(): ?string
+    public function getShelf(): ?string
     {
-        return $this->RecipeBook;
+        return $this->Shelf;
     }
 
-    public function setRecipeBook(string $RecipeBook): self
+    public function setShelf(string $Shelf): self
     {
-        $this->RecipeBook = $RecipeBook;
+        $this->Shelf = $Shelf;
 
         return $this;
     }
@@ -53,6 +54,11 @@ class Bookshelf
     public function getRecipeBooks(): Collection
     {
         return $this->recipeBooks;
+    }
+
+    public function getRecipeBooksString(): Collection
+    {
+        return $this->recipeBooks->__toString();
     }
 
     public function addRecipeBook(RecipeBook $recipeBook): self
@@ -87,5 +93,9 @@ class Bookshelf
         $this->library = $library;
 
         return $this;
+    }
+
+    public function __toString() {
+        return "This is the shelf" . $this->Shelf;
     }
 }

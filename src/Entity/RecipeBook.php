@@ -25,6 +25,7 @@ class RecipeBook
     #[ORM\Column(nullable: true)]
     private ?int $year = null;
 
+
     #[ORM\ManyToOne(inversedBy: 'recipeBooks')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Bookshelf $bookshelf = null;
@@ -92,5 +93,9 @@ class RecipeBook
         $this->bookshelf = $bookshelf;
 
         return $this;
+    }
+
+    public function __toString() {
+        return $this->title . " (Author: " . $this->author . ", Cuisine: " . $this->cuisine . ", year: " . $this->year;
     }
 }

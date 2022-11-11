@@ -39,6 +39,22 @@ class RecipeBookRepository extends ServiceEntityRepository
         }
     }
 
+    /*
+    /**
+     * {@inheritDoc}
+     * @return RecipeBook[]
+     * @see \Doctrine\ORM\EntityRepository::findAll()
+     */
+    public function findAll(): array
+    {
+        //  findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+        return $this->findBy(
+            array(),
+            array('year' => 'ASC',
+                'title' => 'ASC', 'author' => 'ASC', 'cuisine' => 'ASC')
+        );
+    }
+/*
 //    /**
 //     * @return RecipeBook[] Returns an array of RecipeBook objects
 //     */
