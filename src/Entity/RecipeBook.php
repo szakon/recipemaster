@@ -96,6 +96,6 @@ class RecipeBook
     }
 
     public function __toString() {
-        return $this->title . " (Author: " . $this->author . ", Cuisine: " . $this->cuisine . ", year: " . $this->year;
+        return $this->title . " (Author: " . $this->author . ", Cuisine: " . $this->cuisine . ", year: " . $this->year . ")";
     }
 }

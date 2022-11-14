@@ -24,7 +24,7 @@ class Bookshelf
 
     #[ORM\ManyToOne(inversedBy: 'bookshelf')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Library $library = null;
+    private ?Member $member = null;
 
     public function __construct()
     {
@@ -83,19 +83,19 @@ class Bookshelf
         return $this;
     }
 
-    public function getLibrary(): ?Library
+    public function getMember(): ?Member
     {
-        return $this->library;
+        return $this->member;
     }
 
-    public function setLibrary(?Library $library): self
+    public function setMember(?Member $member): self
     {
-        $this->library = $library;
+        $this->member = $member;
 
         return $this;
     }
 
     public function __toString() {
-        return "This is the shelf" . $this->Shelf;
+        return "This is the shelf: " . $this->Shelf;
     }
 }
